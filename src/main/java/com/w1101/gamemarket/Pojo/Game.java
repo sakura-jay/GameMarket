@@ -5,4 +5,5 @@ public class Game {
     String type;
     String price;
     //原神启动
+    String QAQ;
 }
