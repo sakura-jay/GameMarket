@@ -56,5 +56,14 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         return mapper.update(wrapper);
     }
 
+    @Override
+    public User login(User user) {
+        QueryWrapper<User> query = new QueryWrapper<>();
+        query.eq("user_name",user.getUserName());
+        query.eq("user_password",user.getUserPassword());
+
+        return mapper.selectOne(query);
+    }
+
 
 }

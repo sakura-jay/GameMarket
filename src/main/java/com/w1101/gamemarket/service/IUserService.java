@@ -19,4 +19,6 @@ public interface IUserService extends IService<User> {
     int updateBalance(User user);
 
     int updateInfo(User user);
+
+    User login(User user);
 }
