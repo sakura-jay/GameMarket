@@ -23,7 +23,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
 
     @Resource
     private UserMapper mapper;
-    private LibraryMapper libraryMapper;
     @Override
     public User selectUserInfo(int userId) {
         QueryWrapper<User> wrapper = new QueryWrapper<>();
@@ -65,5 +64,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         return mapper.selectOne(query);
     }
 
+    @Override
+    public int register(User user) {
+        return mapper.insert(user);
+    }
 
 }

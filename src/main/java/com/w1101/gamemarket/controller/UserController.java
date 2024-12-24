@@ -30,7 +30,12 @@ public class UserController {
         loginUser.setUserPassword(null);
         return Result.success(loginUser);
     }
-
+    @PostMapping("register")
+    public Result register(User user){
+        int num = userService.register(user);
+        if (num == 0) return Result.fail();
+        return Result.success();
+    }
     @GetMapping("userInfo")
     public Result getUserInfo(int userId){
 
@@ -51,5 +56,6 @@ public class UserController {
         if (result == 0) return Result.fail();
         return Result.success();
     }
+
 
 }
