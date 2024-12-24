@@ -1,6 +1,6 @@
 package com.w1101.gamemarket.mapper;
 
-import com.w1101.gamemarket.entity.User;
+import com.w1101.gamemarket.entity.Library;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
@@ -9,9 +9,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * </p>
  *
  * @author qihui
- * @since 2024-12-22
+ * @since 2024-12-24
  */
-public interface UserMapper extends BaseMapper<User> {
-
+public interface LibraryMapper extends BaseMapper<Library> {
 
 }

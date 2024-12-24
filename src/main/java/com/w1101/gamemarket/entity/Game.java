@@ -72,4 +72,8 @@ public class Game implements Serializable {
     @TableField(exist = false)
     private String discountRate;
 
+    @ApiModelProperty("添加到库的时间")
+    @TableField(exist = false)
+    private LocalDate addTime;
+
 }

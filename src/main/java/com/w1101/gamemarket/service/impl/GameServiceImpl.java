@@ -4,9 +4,11 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.w1101.gamemarket.entity.Game;
 import com.w1101.gamemarket.mapper.GameMapper;
+import com.w1101.gamemarket.mapper.LibraryMapper;
 import com.w1101.gamemarket.service.IGameService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.w1101.gamemarket.vo.carouselVo;
+import com.w1101.gamemarket.vo.pageVo;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
@@ -86,5 +88,24 @@ public class GameServiceImpl extends ServiceImpl<GameMapper, Game> implements IG
         vo1.setCards(list2);
         list.add(vo1);
         return list;
+    }
+
+
+    @Override
+    public pageVo selectUserGameList(pageVo vo) {
+
+        Page<Game> page = new Page<>(vo.getPageNum(),vo.getPageSize());
+//        QueryWrapper<Game> wrapper = new QueryWrapper<>();
+//        QueryWrapper<Game> wrapper1 = new QueryWrapper<>();
+//        wrapper.eq("user_id",vo.getUserId());
+
+        Page<Game> page1 = mapper.selectByPage(page, vo.getUserId());
+
+//        int total = mapper.selectPageTotal(vo);
+        int total = (int) page1.getTotal();
+        vo.setTotal(total);
+        vo.setList(page1.getRecords());
+
+        return vo;
     }
 }
