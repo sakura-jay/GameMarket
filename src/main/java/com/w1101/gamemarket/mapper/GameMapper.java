@@ -31,7 +31,7 @@ public interface GameMapper extends BaseMapper<Game> {
 
     @Select({
             "<script>",
-            "SELECT DISTINCT game.*", // 使用 DISTINCT 确保每个游戏只出现一次
+            "SELECT DISTINCT game.*,factory.factory_name", // 使用 DISTINCT 确保每个游戏只出现一次
             "FROM game",
             "LEFT JOIN gametype ON game.game_id = gametype.game_id",
             "LEFT JOIN factory ON game.factory_id = factory.factory_id",

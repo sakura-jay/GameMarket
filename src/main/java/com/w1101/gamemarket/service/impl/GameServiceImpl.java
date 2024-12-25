@@ -2,7 +2,9 @@ package com.w1101.gamemarket.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.w1101.gamemarket.entity.Factory;
 import com.w1101.gamemarket.entity.Game;
+import com.w1101.gamemarket.mapper.FactoryMapper;
 import com.w1101.gamemarket.mapper.GameMapper;
 import com.w1101.gamemarket.mapper.LibraryMapper;
 import com.w1101.gamemarket.service.IGameService;
@@ -31,6 +33,8 @@ import java.util.Random;
 public class GameServiceImpl extends ServiceImpl<GameMapper, Game> implements IGameService {
     @Resource
     private GameMapper mapper;
+    @Resource
+    private FactoryMapper factoryMapper;
     @Override
     public List<Game> selectMainList() {
 //        Page<Game> page =new Page<>(1,6);
@@ -127,6 +131,25 @@ public class GameServiceImpl extends ServiceImpl<GameMapper, Game> implements IG
         vo.setTotal((int) page1.getTotal());
 
         return vo;
+    }
+
+    @Override
+    public int addGame() {
+        QueryWrapper<Factory> factoryWrapper = new QueryWrapper<>();
+
+        factoryWrapper.eq("factory_name","RockStar");
+        Factory factory = factoryMapper.selectOne(factoryWrapper);
+
+        if (factory.getFactoryId()==null){
+            Factory temp = new Factory();
+            factoryMapper.insert(temp);
+            factory = factoryMapper.selectOne(factoryWrapper);
+        }
+//        game.setFactoryId(factory.getFactoryId());
+//
+//        mapper.insert(game);
+
+        return factory.getFactoryId();
     }
 }
 

@@ -29,4 +29,6 @@ public interface IGameService extends IService<Game> {
     Page<Game> selectlist(gamevo vo);
 
     typevo selecttypelist(typevo vo);
+
+    int addGame();
 }

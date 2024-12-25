@@ -1,22 +1,20 @@
 package com.w1101.gamemarket.controller;
 
-import com.w1101.entity.Wishlist;
-import com.w1101.service.IWishlistService;
-import com.w1101.utils.Result;
-import com.w1101.vo.WishListVo;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import com.w1101.gamemarket.entity.Wishlist;
+import com.w1101.gamemarket.service.IWishlistService;
+import com.w1101.gamemarket.utils.Result;
+import jakarta.annotation.Resource;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * <p>
- * 前端控制器
+ *  前端控制器
  * </p>
  *
  * @author Lv
- * @since 2024-12-18
+ * @since 2024-12-24
  */
 @Slf4j//用于使用log.info
 @RestController
