@@ -1,7 +1,11 @@
 package com.w1101.gamemarket.service;
 
-import com.w1101.gamemarket.entity.Shoppingcart;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.w1101.entity.Shoppingcart;
+import com.w1101.vo.CartItem;
+import com.w1101.vo.ShoppingCartVo;
+
+import java.util.List;
 
 /**
  * <p>
@@ -9,8 +13,17 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * </p>
  *
  * @author Lv
- * @since 2024-12-24
+ * @since 2024-12-18
  */
 public interface IShoppingcartService extends IService<Shoppingcart> {
 
+    List<ShoppingCartVo> getlist(Shoppingcart shoppingcart);
+
+    boolean add(Integer userId, Integer gameId);
+
+    void delete(Integer userId, Integer gameId);
+
+    boolean checkout(List<CartItem> items);
+
+//    boolean checkout(ShoppingCartVo shoppingcartvo);
 }

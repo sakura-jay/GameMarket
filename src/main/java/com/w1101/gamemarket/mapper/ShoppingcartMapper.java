@@ -1,7 +1,11 @@
 package com.w1101.gamemarket.mapper;
 
-import com.w1101.gamemarket.entity.Shoppingcart;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.w1101.entity.Shoppingcart;
+import com.w1101.vo.CartItem;
+import com.w1101.vo.ShoppingCartVo;
+
+import java.util.List;
 
 /**
  * <p>
@@ -9,8 +13,23 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * </p>
  *
  * @author Lv
- * @since 2024-12-24
+ * @since 2024-12-18
  */
 public interface ShoppingcartMapper extends BaseMapper<Shoppingcart> {
 
+    List<ShoppingCartVo> getlist(Integer userId);
+
+    void add(Integer userId, Integer gameId);
+
+    void delete(Integer userId, Integer gameId);
+
+    int existShoppingcart(Integer userId, Integer gameId);
+
+    int existpurchase(Integer userId, Integer gameId);
+
+    boolean checkout(CartItem items);
+
+    int DetemineBalance(Integer userId,double totalprice);
+
+//    void resetBalance(Integer userId, double totalprice);
 }

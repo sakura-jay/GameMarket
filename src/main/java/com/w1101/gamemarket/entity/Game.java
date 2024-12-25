@@ -65,8 +65,7 @@ public class Game implements Serializable {
     @ApiModelProperty("游戏状态")
     private Integer gameStatus;
 
-    @ApiModelProperty("游戏售价")
-    private  BigDecimal cost;
+
 
     @ApiModelProperty("打折倍率")
     @TableField(exist = false)
@@ -81,4 +80,6 @@ public class Game implements Serializable {
     @TableField(exist = false)
     private Integer total;
 
+    @ApiModelProperty("现价")
+    private double cost;
 }
