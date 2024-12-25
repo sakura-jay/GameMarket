@@ -1,8 +1,8 @@
 package com.w1101.gamemarket.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.w1101.entity.Wishlist;
-import com.w1101.vo.WishListVo;
+import com.w1101.gamemarket.entity.Wishlist;
+import com.w1101.gamemarket.vo.WishListVo;
 
 import java.util.List;
 
@@ -23,5 +23,7 @@ public interface IWishlistService extends IService<Wishlist> {
 
     void delete(Integer userId, Integer gameId);
 
-    boolean add(Integer userId, Integer gameId);
+
+
+    boolean add(Wishlist wish);
 }

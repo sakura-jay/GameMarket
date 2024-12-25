@@ -1,5 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.w1101.mapper.WishlistMapper">
+<mapper namespace="com.w1101.gamemarket.mapper.WishlistMapper">
+    <insert id="add">
+        INSERT INTO wishlist(user_id, game_id) VALUES (#{userId}, #{gameId})
+    </insert>
+    <select id="existsWishlist" resultType="int">
+        SELECT COUNT(1)
+        FROM wishlist
+        WHERE user_id = #{userId} AND game_id = #{gameId}
+    </select>
+    <delete id="delete">
+        DELETE FROM wishlist WHERE user_id = #{userId} AND game_id = #{gameId}
+    </delete>
+    <select id="getlist" resultType="com.w1101.gamemarket.vo.WishListVo">
+        SELECT wl.game_id,
+               g.game_title,
+               g.description,
+               g.game_avatar,
+               wl.add_date,
+               g.price,
+               d.discount_rate,
+               g.cost AS nowprice
+        FROM wishlist wl
+                 JOIN
+             game g ON wl.game_id = g.game_id
+                 JOIN discount d ON g.game_id = d.game_id
+        WHERE wl.user_id = #{userId}
+    </select>
+    <select id="sort" resultType="com.w1101.gamemarket.vo.WishListVo">
+        SELECT wl.game_id,
+        g.game_title,
+        g.description,
+        g.game_avatar,
+        wl.add_date,
+        g.price,
+        d.discount_rate,
+--         g.price * (1 - d.discount_rate) AS nowprice
+        g.cost AS nowprice
+        FROM wishlist wl
+        JOIN game g ON wl.game_id = g.game_id
+        JOIN discount d ON g.game_id = d.game_id
+        WHERE wl.user_id = #{userId}
+        <choose>
+            <when test="sortId == 1">
+                ORDER BY wl.whislist_id ASC -- 假设 "您的排序" 按照记录
+            </when>
+            <when test="sortId == 2">
+                ORDER BY g.price ASC
+            </when>
+            <when test="sortId == 3">
+                ORDER BY d.discount_rate DESC
+            </when>
+            <when test="sortId == 4">
+                ORDER BY wl.add_date DESC
+            </when>
+            <when test="sortId == 5">
+                ORDER BY g.volume DESC -- 假设有销售量字段
+            </when>
+            <when test="sortId == 6">
+                ORDER BY g.release_date DESC -- 假设有发行日期字段
+            </when>
+            <when test="sortId == 7">
+                ORDER BY g.rate DESC -- 假设有评分分数字段
+            </when>
+            <otherwise>
+                -- 默认排序可以是无顺序或者是按照某些默认字段排序
+                ORDER BY wl.whislist_id ASC -- 示例默认排序
+            </otherwise>
+        </choose>
+    </select>
+
+
 
 </mapper>

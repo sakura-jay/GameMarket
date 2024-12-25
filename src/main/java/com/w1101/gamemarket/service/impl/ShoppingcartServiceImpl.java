@@ -2,13 +2,13 @@ package com.w1101.gamemarket.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.w1101.entity.Game;
-import com.w1101.entity.Shoppingcart;
-import com.w1101.mapper.GameMapper;
-import com.w1101.mapper.ShoppingcartMapper;
-import com.w1101.service.IShoppingcartService;
-import com.w1101.vo.CartItem;
-import com.w1101.vo.ShoppingCartVo;
+import com.w1101.gamemarket.entity.Game;
+import com.w1101.gamemarket.entity.Shoppingcart;
+import com.w1101.gamemarket.mapper.GameMapper;
+import com.w1101.gamemarket.mapper.ShoppingcartMapper;
+import com.w1101.gamemarket.service.IShoppingcartService;
+import com.w1101.gamemarket.vo.CartItem;
+import com.w1101.gamemarket.vo.ShoppingCartVo;
 import jakarta.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -58,8 +58,8 @@ public class ShoppingcartServiceImpl extends ServiceImpl<ShoppingcartMapper, Sho
         for (CartItem item : items) {
             QueryWrapper<Game> gameQueryWrapper = new QueryWrapper<>();
            Game game = gameMapper.selectOne(gameQueryWrapper.eq("game_id", item.getGameId()));
-           item.setNowprice(game.getCost());
-            totalprice = totalprice + game.getCost();
+           item.setNowprice(game.getCost().doubleValue());
+           totalprice = totalprice +  game.getCost().doubleValue();
         }
         Integer userId1 = Integer.valueOf(items.get(0).getUserId());
         if(DetemineBalance(userId1,totalprice)==1){

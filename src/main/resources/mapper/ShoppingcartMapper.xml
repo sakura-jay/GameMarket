@@ -1,5 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.w1101.mapper.ShoppingcartMapper">
+<mapper namespace="com.w1101.gamemarket.mapper.ShoppingcartMapper">
+    <insert id="add">
+        INSERT shoppingcart(user_id,game_id) VALUES (#{userId},#{gameId})
+    </insert>
+    <insert id="checkout">
+         INSERT INTO purchase(game_id,user_id,purchase_amount) VALUES (#{gameId},#{userId},#{nowprice})
+    </insert>
+<!--    <update id="resetBalance">-->
+<!--        UPDATE user SET user_balance = user_balance-#{totalprice}  WHERE user_id = #{userId}-->
+<!--    </update>-->
+    <delete id="delete">
+        DELETE FROM shoppingcart WHERE user_id = #{userId} AND game_id = #{gameId}
+    </delete>
 
+    <select id="getlist" resultType="com.w1101.gamemarket.vo.ShoppingCartVo">
+        SELECT
+               g.game_id,
+               g.game_title,
+               g.game_avatar,
+               g.price,
+               g.cost AS nowprice,
+               sc.add_date,
+               g.description,
+               d.discount_rate
+        FROM shoppingcart sc JOIN game g ON sc.game_id = g.game_id
+        JOIN discount d ON g.game_id = d.game_id
+        WHERE sc.user_id = #{userId}
+    </select>
+    <select id="existShoppingcart" resultType="int">
+        SELECT COUNT(*) FROM shoppingcart WHERE user_id = #{userId} AND game_id = #{gameId}
+    </select>
+    <select id="existpurchase" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM purchase WHERE user_id = #{userId} AND game_id = #{gameId}
+    </select>
+    <select id="DetemineBalance" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM user WHERE user_id = #{userId} AND user_balance >= #{totalprice}
+    </select>
 </mapper>

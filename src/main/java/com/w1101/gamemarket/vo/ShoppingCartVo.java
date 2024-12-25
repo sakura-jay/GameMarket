@@ -2,6 +2,8 @@ package com.w1101.gamemarket.vo;
 
 import lombok.Data;
 
+import java.math.BigDecimal;
+
 @Data
 public class ShoppingCartVo {
     private int userId;
@@ -9,7 +11,7 @@ public class ShoppingCartVo {
     private String gameTitle;
     private String gameAvatar;
     private double price;
-    private double nowprice;
+    private BigDecimal nowprice;
     private String addDate;
     private String description;
     private double discountRate;

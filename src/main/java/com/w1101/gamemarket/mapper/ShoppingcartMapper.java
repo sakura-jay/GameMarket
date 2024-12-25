@@ -1,9 +1,9 @@
 package com.w1101.gamemarket.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.w1101.entity.Shoppingcart;
-import com.w1101.vo.CartItem;
-import com.w1101.vo.ShoppingCartVo;
+import com.w1101.gamemarket.entity.Shoppingcart;
+import com.w1101.gamemarket.vo.CartItem;
+import com.w1101.gamemarket.vo.ShoppingCartVo;
 
 import java.util.List;
 
@@ -27,7 +27,7 @@ public interface ShoppingcartMapper extends BaseMapper<Shoppingcart> {
 
     int existpurchase(Integer userId, Integer gameId);
 
-    boolean checkout(CartItem items);
+    boolean checkout(CartItem item);
 
     int DetemineBalance(Integer userId,double totalprice);
 

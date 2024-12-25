@@ -1,8 +1,8 @@
 package com.w1101.gamemarket.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.w1101.entity.Wishlist;
-import com.w1101.vo.WishListVo;
+import com.w1101.gamemarket.entity.Wishlist;
+import com.w1101.gamemarket.vo.WishListVo;
 
 import java.util.List;
 
@@ -15,7 +15,7 @@ import java.util.List;
  * @since 2024-12-18
  */
 public interface WishlistMapper extends BaseMapper<Wishlist> {
-            List<WishListVo>getlist(Integer userId);
+    List<WishListVo> getlist(Integer userId);
 
 
 
