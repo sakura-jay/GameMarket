@@ -76,4 +76,9 @@ public class Game implements Serializable {
     @TableField(exist = false)
     private LocalDate addTime;
 
+
+    @ApiModelProperty("总数量")
+    @TableField(exist = false)
+    private Integer total;
+
 }

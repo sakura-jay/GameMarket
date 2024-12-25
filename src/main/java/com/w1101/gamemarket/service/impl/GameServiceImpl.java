@@ -8,7 +8,9 @@ import com.w1101.gamemarket.mapper.LibraryMapper;
 import com.w1101.gamemarket.service.IGameService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.w1101.gamemarket.vo.carouselVo;
+import com.w1101.gamemarket.vo.gamevo;
 import com.w1101.gamemarket.vo.pageVo;
+import com.w1101.gamemarket.vo.typevo;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
@@ -108,4 +110,25 @@ public class GameServiceImpl extends ServiceImpl<GameMapper, Game> implements IG
 
         return vo;
     }
+
+
+    @Override
+    public Page<Game> selectlist(gamevo vo) {
+        Page<Game> page = new Page<>(vo.getPageNum(),vo.getPageSize());
+        Page<Game> page1 = mapper.selectPage(page, vo.getSelectedTags(), vo.getSelectedpratforms(), vo.getOrder(), vo.getTitle());
+
+        return  page1;
+    }
+    @Override
+    public typevo selecttypelist(typevo vo) {
+        Page<Game> page = new Page<>(vo.getPageNum(),vo.getPageSize());
+        Page<Game> page1 = mapper.selectTypeList(page, vo.getSelectedTags());
+        vo.setList(page1.getRecords());
+        vo.setTotal((int) page1.getTotal());
+
+        return vo;
+    }
 }
+
+
+

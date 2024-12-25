@@ -1,14 +1,12 @@
 package com.w1101.gamemarket.controller;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.w1101.gamemarket.entity.Game;
 import com.w1101.gamemarket.service.IGameService;
 import com.w1101.gamemarket.utils.Result;
-import com.w1101.gamemarket.vo.carouselVo;
-import com.w1101.gamemarket.vo.pageVo;
+import com.w1101.gamemarket.vo.*;
 import jakarta.annotation.Resource;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -44,4 +42,20 @@ public class GameController {
     public Result getGameList(pageVo vo){
         return Result.success(gameService.selectUserGameList(vo));
     }
+
+
+    @GetMapping("/alllist")
+    public Result AllList(gamevo vo) {
+        System.out.println (vo.getTitle());
+        Page<Game> list = gameService.selectlist(vo);
+        return Result.success(list);
+    }
+
+    @GetMapping("/typelist")
+    public Result typeList( typevo vo) {
+
+        typevo list = gameService.selecttypelist(vo);
+        return Result.success(list);
+    }
+
 }

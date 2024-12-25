@@ -1,9 +1,12 @@
 package com.w1101.gamemarket.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.w1101.gamemarket.entity.Game;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.w1101.gamemarket.vo.carouselVo;
+import com.w1101.gamemarket.vo.gamevo;
 import com.w1101.gamemarket.vo.pageVo;
+import com.w1101.gamemarket.vo.typevo;
 
 import java.util.List;
 
@@ -22,4 +25,8 @@ public interface IGameService extends IService<Game> {
     List<carouselVo> selectCarouselList();
 
     pageVo selectUserGameList(pageVo vo);
+
+    Page<Game> selectlist(gamevo vo);
+
+    typevo selecttypelist(typevo vo);
 }
