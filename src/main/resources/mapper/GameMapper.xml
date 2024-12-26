@@ -12,4 +12,7 @@
         SELECT COUNT(DISTINCT game_id) AS total FROM library
         WHERE user_id=#{userId};
     </select>
+    <select id="findFactoryIdByGameId" resultType="java.lang.Integer">
+        SELECT factory_id FROM game WHERE game_id=#{gameId};
+    </select>
 </mapper>

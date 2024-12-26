@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.w1101.gamemarket.entity.Game;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.w1101.gamemarket.vo.carouselVo;
+import com.w1101.gamemarket.vo.gameselectvo;
 import com.w1101.gamemarket.vo.gamevo;
 import com.w1101.gamemarket.vo.pageVo;
 import com.w1101.gamemarket.vo.typevo;
@@ -31,4 +32,8 @@ public interface IGameService extends IService<Game> {
     typevo selecttypelist(typevo vo);
 
     int addGame();
+
+    gameselectvo gameselect(gameselectvo vo);
+
+    String getFactoryNameByGameId(Integer gameId);
 }

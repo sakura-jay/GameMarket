@@ -23,6 +23,8 @@ public interface GameMapper extends BaseMapper<Game> {
 
     int selectPageTotal(pageVo vo);
 
+    Integer findFactoryIdByGameId(Integer gameId);
+
 
     @Select("SELECT * FROM game " +
             "LEFT JOIN gametype ON game.game_id = gametype.game_id " +

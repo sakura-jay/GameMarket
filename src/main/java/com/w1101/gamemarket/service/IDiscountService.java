@@ -13,4 +13,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IDiscountService extends IService<Discount> {
 
+    Discount selectDiscount(Discount vo);
 }

@@ -2,6 +2,7 @@ package com.w1101.gamemarket.mapper;
 
 import com.w1101.gamemarket.entity.Factory;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * <p>
@@ -13,4 +14,5 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface FactoryMapper extends BaseMapper<Factory> {
 
+    String findFactoryNameById(@Param("factoryId") Integer factoryId);
 }

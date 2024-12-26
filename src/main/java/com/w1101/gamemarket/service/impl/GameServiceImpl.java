@@ -7,13 +7,18 @@ import com.w1101.gamemarket.entity.Game;
 import com.w1101.gamemarket.mapper.FactoryMapper;
 import com.w1101.gamemarket.mapper.GameMapper;
 import com.w1101.gamemarket.mapper.LibraryMapper;
+import com.w1101.gamemarket.entity.Gameimage;
+import com.w1101.gamemarket.entity.Gametype;
+import com.w1101.gamemarket.mapper.*;
 import com.w1101.gamemarket.service.IGameService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.w1101.gamemarket.vo.carouselVo;
+import com.w1101.gamemarket.vo.gameselectvo;
 import com.w1101.gamemarket.vo.gamevo;
 import com.w1101.gamemarket.vo.pageVo;
 import com.w1101.gamemarket.vo.typevo;
 import jakarta.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -151,7 +156,45 @@ public class GameServiceImpl extends ServiceImpl<GameMapper, Game> implements IG
 
         return factory.getFactoryId();
     }
+
+    @Override
+    public gameselectvo gameselect(gameselectvo vo) {
+
+        QueryWrapper<Game> wrapper1 = new QueryWrapper<>();
+//        QueryWrapper<Gameimage> wrapper2 = new QueryWrapper<>();
+//        QueryWrapper<Gametype> wrapper3 = new QueryWrapper<>();
+        wrapper1.eq("game_id",vo.getGameId());
+//        wrapper2.eq("game_id",vo.getGameId());
+//        wrapper3.eq("game_id",vo.getGameId());
+
+        Game game = mapper.selectOne(wrapper1);
+//        List<Gameimage> image =imageMapper.selectList(wrapper2);
+//
+//        List<Gametype> type = typeMapper.selectList(wrapper3);
+
+        vo.setA(game);
+//        vo.setImage(image);
+//        vo.setType(type);
+
+        return vo;
+    }
+
+    @Override
+    public String getFactoryNameByGameId(Integer gameId) {
+        // 查询游戏信息，获取工厂 ID
+        Integer factoryId = mapper.findFactoryIdByGameId(gameId);
+
+        // 如果未找到游戏，直接返回 null
+        if (factoryId == null) {
+            return null;
+        }
+
+        // 根据工厂 ID 查询工厂名称
+        String factoryName = factoryMapper.findFactoryNameById(factoryId);
+
+        // 返回工厂名称（可能为 null）
+        return factoryName;
+    }
+
+
 }
-
-
-

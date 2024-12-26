@@ -3,6 +3,8 @@ package com.w1101.gamemarket.service;
 import com.w1101.gamemarket.entity.Gameimage;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
+
 /**
  * <p>
  *  服务类
@@ -13,4 +15,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IGameimageService extends IService<Gameimage> {
 
+    List<Gameimage> selectiamge(Gameimage vo);
 }
