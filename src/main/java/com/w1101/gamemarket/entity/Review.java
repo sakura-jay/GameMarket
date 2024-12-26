@@ -1,6 +1,7 @@
 package com.w1101.gamemarket.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -35,9 +36,6 @@ public class Review implements Serializable {
 
     @ApiModelProperty("游戏ID")
     private Integer gameId;
-
-    @ApiModelProperty("评分")
-    private Integer star;
 
     @ApiModelProperty("评论内容")
     private String remark;

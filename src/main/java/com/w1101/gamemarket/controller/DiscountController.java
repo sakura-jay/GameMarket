@@ -25,6 +25,6 @@ public class DiscountController {
 private IDiscountService discountService;
 @GetMapping("discounti")
     public Discount GetDiscount(Discount vo){
-    return discountService.selectDiscount(vo);
+        return discountService.selectDiscount(vo);
     }
 }

@@ -8,4 +8,7 @@ public class reviewVo {
     private Integer pageNum;
     private Integer pageSize;
     private Integer total;
+    private String userNickname;
+    private String remark;
+    private String reviewDate;
 }

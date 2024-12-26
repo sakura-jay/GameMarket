@@ -21,7 +21,7 @@ public interface IReviewService extends IService<Review> {
 
 //    List<Review> viewselect(Review vo);
 
-    Page<Review> viewselect(reviewVo vo);
+    Page<reviewVo> viewselect(reviewVo vo);
 
     int add(Review review);
 }

@@ -45,6 +45,7 @@ public class UserController {
     @PutMapping("updateBalance")
     public Result updateBalance(User user){
        int result = userService.updateBalance(user);
+
        if (result == 0) return Result.fail();
        return Result.success();
     }

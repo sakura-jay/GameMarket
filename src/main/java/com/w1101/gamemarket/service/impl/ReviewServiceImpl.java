@@ -34,18 +34,17 @@ public class ReviewServiceImpl extends ServiceImpl<ReviewMapper, Review> impleme
 //        return list;
 //    }
     @Override
-    public Page<Review> viewselect(reviewVo vo){
-        Page<Review> page=new Page<>(vo.getPageNum(),vo.getPageSize());
+    public Page<reviewVo> viewselect(reviewVo vo){
+        Page<reviewVo> page=new Page<>(vo.getPageNum(),vo.getPageSize());
         QueryWrapper<Review> wrapper = new QueryWrapper<>();
         wrapper.eq("game_id",vo.getGameId());
 //        List<Review> list=mapper.selectList(wrapper);
-        Page<Review> reviewPage=mapper.selectPage(page,wrapper);
+        Page<reviewVo> reviewPage=mapper.selectByPage( page,vo.getGameId());
         return reviewPage;
     }
 
     @Override
     public int add(Review review) {
-
         return mapper.insert(review);
     }
 

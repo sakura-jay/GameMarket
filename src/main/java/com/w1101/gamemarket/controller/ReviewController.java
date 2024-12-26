@@ -27,7 +27,7 @@ public class ReviewController {
     private IReviewService reviewService;
     @GetMapping("reviewi")
     public Result ReviewList(reviewVo vo){
-        Page<Review> reviewList = reviewService.viewselect(vo);
+        Page<reviewVo> reviewList = reviewService.viewselect(vo);
         return Result.success( reviewList);
     }
 

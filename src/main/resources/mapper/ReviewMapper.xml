@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.w1101.gamemarket.mapper.ReviewMapper">
-
+    <select id="selectByPage" resultType="com.w1101.gamemarket.vo.reviewVo">
+        SELECT u.user_nickname,r.remark,r.review_date FROM review AS r
+        JOIN user AS u ON r.user_id = u.user_id
+        WHERE r.game_id = #{gameId}
+    </select>
 </mapper>
